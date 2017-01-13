@@ -1,0 +1,19 @@
+project_path: &project_path 
+date: &date '20160603'
+
+#-------------------------------------index----------------------------------------------
+index:
+  path: ./index.py
+  
+  # 描述
+  describe: 
+
+  name: &name index
+# [ rf , lr , rf_cnn_w2v ]
+  classifier_model: rf_cnn_w2v
+
+  verbose: 1
+  n_estimators: 380
+  model_file_path: ../sentence_understand_module/bow_word2vec_oov_randomforest/model/bow_WORD2VEC_oov_randomforest_bow_380tree.pkl
+  label_file_path: ../sentence_understand_module/bow_word2vec_oov_randomforest/model/20160602label_bow_WORD2VEC_oov_randomforest_bow.mat
+  train_data_file_path: ../aiml_module/aiml_file/v2.2_aiml_file_2378.csv

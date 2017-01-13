@@ -1,0 +1,2 @@
+127.0.0.1:44494 - - [13/Jan/2017 14:04:46] "HTTP/1.1 GET /id_detection/regex/rawInput=品牌" - 200 OK
+127.0.0.1:44494 - - [13/Jan/2017 14:04:47] "HTTP/1.1 GET /id_detection/regex/rawInput=品牌" - 200 OK
