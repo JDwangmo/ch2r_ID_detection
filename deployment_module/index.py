@@ -36,10 +36,11 @@ class IDDetectionMain:
         else:
             status = 'True|regex detection'
 
-        is_id = RegexExtracting.extracting(rawInput)
+        is_id, info_blocks = RegexExtracting.extracting(rawInput)
         result = {'rawInput': rawInput,
                   'status': status,
-                  'is_id': is_id
+                  'is_id': is_id,
+                  'info_blocks': info_blocks
                   }
         web.header('Content-Type', 'application/json')
         result = json.dumps(result)

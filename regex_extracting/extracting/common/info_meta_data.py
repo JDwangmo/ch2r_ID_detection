@@ -35,4 +35,17 @@ class InfoMetadata(object):
         pass
 
     def __str__(self):
-        return u'name:{0}\nregex_name:{1}\nregex_value:{2}'.format(self.raw_data,self.regex_name.decode('utf8'),self.regex_value)
+        return u'raw_data:{0}\nregex_name:{1}\nregex_value:{2}\nis_statement:{3}'.format(self.raw_data,
+                                                                                         self.regex_name.decode('utf8'),
+                                                                                         self.regex_value,
+                                                                                         self.is_statement)
+
+    def to_dict(self):
+        dd = {
+            'regex_name': self.regex_name,
+            'regex_value': self.regex_value,
+            'is_statement': self.is_statement,
+            'leftIndex': self.leftIndex,
+            'rightIndex': self.rightIndex,
+        }
+        return dd

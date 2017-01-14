@@ -3,7 +3,7 @@
     Author:  'jdwang'
     Date:    'create date: 2017-01-13'; 'last updated date: 2017-01-13'
     Email:   '383287471@qq.com'
-    Describe:
+    Describe: 所有属性规则的父类：比如 Price 等都是该类的子类
 """
 from __future__ import print_function
 
@@ -13,6 +13,11 @@ from info_meta_data import InfoMetadata
 
 
 class RegexBase(object):
+    """
+    所有属性规则的父类：比如 Price 等都是该类的子类
+
+    """
+    # 属性名
     name = ''
     # 要处理的句子
     sentence = ''
@@ -28,9 +33,17 @@ class RegexBase(object):
 
     def __str__(self):
 
-        return u'\n--'.join([unicode(item) for item in self.info_meta_data_list])
+        return u'\n------------------\n'.join([unicode(item) for item in self.info_meta_data_list])
         # return ''
         # return u'\n------------------\n'.join([unicode(item) for item in self.info_meta_data_list])
+
+    def to_dict(self):
+        """
+        转换成字典
+
+        :return:
+        """
+        return {idx:item.to_dict() for idx,item in enumerate(self.info_meta_data_list)}
 
     def regex_process(self):
         # 出现过的匹配值
@@ -42,9 +55,9 @@ class RegexBase(object):
         match_result = re.search(pattern, self.sentence)
         if match_result:
             info_meta_data = InfoMetadata()
-            info_meta_data.raw_data = self.sentence.decode('utf8')
-            info_meta_data.regex_name = self.name.decode('utf8')
-            info_meta_data.regex_value = match_result.group(0).decode('utf8')
+            info_meta_data.raw_data = self.sentence
+            info_meta_data.regex_name = self.name
+            info_meta_data.regex_value = match_result.group(0)
 
             info_meta_data.is_statement = True
 
@@ -68,7 +81,7 @@ class RegexBase(object):
                 info_meta_data.regex_name = self.name
                 info_meta_data.regex_value = match_result.group(0)
 
-                info_meta_data.is_statement = True
+                info_meta_data.is_statement = False
 
                 info_meta_data.leftIndex = match_result.start(0)
                 info_meta_data.rightIndex = match_result.end(0)

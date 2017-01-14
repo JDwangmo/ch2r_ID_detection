@@ -23,7 +23,7 @@ class Popularity(RegexBase):
         # region 1 初始化正则表达式
         # 描述正则表达式
         self.statement_regexs = [
-            '  '
+            '人气'
         ]
         # 值正则表达式
         self.value_regexs = [

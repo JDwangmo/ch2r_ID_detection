@@ -104,7 +104,13 @@ class RegexExtracting(object):
 
     @staticmethod
     def extracting(sentence):
-        
+        """
+        提取有效语义
+
+        :param sentence: 待提取的句子
+        :return: (is_id, info_blocks) =  (是否有语义， 提取的语义块)
+        """
+
         # 提取到的有效语义 列表
         # 每个元素是 RegexBase 对象
         extracting_regexs = []
@@ -131,20 +137,20 @@ class RegexExtracting(object):
         extracting_regexs.append(SimCardType(sentence))
         extracting_regexs.append(Weight(sentence))
         extracting_regexs.append(PhoneQuality(sentence))
-        
+
         # 网络属性(sentence))
         extracting_regexs.append(NetworkModel(sentence))
         extracting_regexs.append(NetworkFrequency(sentence))
         extracting_regexs.append(DataService(sentence))
         extracting_regexs.append(Browser(sentence))
-        
+
         # 存储属性(sentence))
         extracting_regexs.append(RomCapacity(sentence))
         extracting_regexs.append(MemoryCardType(sentence))
         extracting_regexs.append(RamCapacity(sentence))
         extracting_regexs.append(MaxExpandCapacity(sentence))
         extracting_regexs.append(HotSwappable(sentence))
-        
+
         # 显示属性(sentence))
         extracting_regexs.append(ScreenSize(sentence))
         extracting_regexs.append(ScreenColor(sentence))
@@ -154,7 +160,7 @@ class RegexExtracting(object):
         extracting_regexs.append(TouchScreenType(sentence))
         extracting_regexs.append(SensorType(sentence))
         extracting_regexs.append(ProduceFeature(sentence))
-        
+
         # 娱乐功能(sentence))
         extracting_regexs.append(VidioFormat(sentence))
         extracting_regexs.append(AudioFormat(sentence))
@@ -224,27 +230,35 @@ class RegexExtracting(object):
 
         # 评价性语义(sentence))
         # extracting_regexs.append(BatteryScore(sentence))
-           # extracting_regexs.append(ScreenScore(sentence))
-           # extracting_regexs.append(ShootScore(sentence))
-           # extracting_regexs.append(MediaScore(sentence))
-           # extracting_regexs.append(OutlookScore(sentence))
-           # extracting_regexs.append(CostScore(sentence))
-           # extracting_regexs.append(Advantage(sentence))
-           # extracting_regexs.append(Disadvantage
+        # extracting_regexs.append(ScreenScore(sentence))
+        # extracting_regexs.append(ShootScore(sentence))
+        # extracting_regexs.append(MediaScore(sentence))
+        # extracting_regexs.append(OutlookScore(sentence))
+        # extracting_regexs.append(CostScore(sentence))
+        # extracting_regexs.append(Advantage(sentence))
+        # extracting_regexs.append(Disadvantage
         # endregion
 
         extracting_regexs = [regex for regex in extracting_regexs if len(regex.info_meta_data_list) > 0]
 
-        if len(extracting_regexs)>0:
+        if len(extracting_regexs) > 0:
             # print('有语义')
-            for regex in extracting_regexs:
-                print(unicode(regex))
-            return True
+            # for regex in extracting_regexs:
+            #     print('-' * 50)
+            #     print(unicode(regex))
+            return True, RegexExtracting.to_dict(extracting_regexs)
         else:
             # print('无语义')
-            return False
+            return False, RegexExtracting.to_dict(extracting_regexs)
+
+    @staticmethod
+    def to_dict(extracting_regexs):
+        dd = {regex.name: regex.to_dict() for regex in extracting_regexs}
+        return dd
+
 
 if __name__ == '__main__':
     # print(RegexExtracting.extracting(u'价格'))
-    print(RegexExtracting.extracting(u'随便'))
-    # RegexExtracting.extracting('4000元')
+    # print(RegexExtracting.extracting(u'随便'))
+    print(RegexExtracting.extracting(u'普通'))
+    # RegexExtracting.extracting(u'4000元')
