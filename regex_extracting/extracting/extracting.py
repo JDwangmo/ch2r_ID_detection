@@ -243,9 +243,9 @@ class RegexExtracting(object):
 
         if len(extracting_regexs) > 0:
             # print('有语义')
-            for regex in extracting_regexs:
-                print('-' * 50)
-                print(unicode(regex))
+            # for regex in extracting_regexs:
+            #     print('-' * 50)
+            #     print(unicode(regex))
             return True, RegexExtracting.to_dict(extracting_regexs)
         else:
             # print('无语义')
