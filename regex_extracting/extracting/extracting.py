@@ -90,7 +90,7 @@ from regex_lib.ScorePerformance import *
 from regex_lib.ScoreShape import *
 from regex_lib.peripherals import *
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 class RegexExtracting(object):
@@ -243,9 +243,9 @@ class RegexExtracting(object):
 
         if len(extracting_regexs) > 0:
             # print('有语义')
-            # for regex in extracting_regexs:
-            #     print('-' * 50)
-            #     print(unicode(regex))
+            for regex in extracting_regexs:
+                print('-' * 50)
+                print(unicode(regex))
             return True, RegexExtracting.to_dict(extracting_regexs)
         else:
             # print('无语义')
@@ -260,5 +260,6 @@ class RegexExtracting(object):
 if __name__ == '__main__':
     # print(RegexExtracting.extracting(u'价格'))
     # print(RegexExtracting.extracting(u'随便'))
-    print(RegexExtracting.extracting(u'普通'))
+    print(RegexExtracting.extracting(u'移动4G'))
+    # print(RegexExtracting.extracting(u'普通'))
     # RegexExtracting.extracting(u'4000元')

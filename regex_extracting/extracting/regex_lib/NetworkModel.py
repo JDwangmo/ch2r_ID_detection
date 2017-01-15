@@ -8,14 +8,13 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 class NetworkModel(RegexBase):
     name = '网络制式'
 
-    def __init__(self,sentence):
-
+    def __init__(self, sentence):
         # 要处理的输入句子
 
         self.sentence = sentence
@@ -27,8 +26,8 @@ class NetworkModel(RegexBase):
         ]
         # 值正则表达式
         self.value_regexs = [
-            '单卡双模|单卡多模|双卡单模|双卡双模|双卡双待|双模双待|移动3G|移动2G|联通3G|联通2G|电信3G|电信2G|移动|联通|电信|3G|2G',
-                '随意|随便|都可以|其他|别的'
+            '单卡双模|单卡多模|双卡单模|双卡双模|双卡双待|双模双待|移动[2-4]G|联通[2-4]G|电信[2-4]G|移动|联通|电信|[2-4]G网络|[2-4]G',
+            '随意|随便|都可以|其他|别的'
         ]
         # endregion
         super(NetworkModel, self).__int__()
@@ -38,5 +37,5 @@ class NetworkModel(RegexBase):
 if __name__ == '__main__':
     price = NetworkModel('价不高')
     for info_meta_data in price.info_meta_data_list:
-        print('-'*80)
+        print('-' * 80)
         print(str(info_meta_data))

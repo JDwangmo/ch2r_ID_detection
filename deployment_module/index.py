@@ -10,7 +10,7 @@ import web
 import json
 import sys
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 sys.path.append('.')
 sys.path.append('..')

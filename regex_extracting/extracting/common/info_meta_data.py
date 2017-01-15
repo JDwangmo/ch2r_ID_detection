@@ -7,7 +7,7 @@
 """
 from __future__ import print_function
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 class InfoMetadata(object):

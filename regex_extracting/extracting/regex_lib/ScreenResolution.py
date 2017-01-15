@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 class ScreenResolution(RegexBase):

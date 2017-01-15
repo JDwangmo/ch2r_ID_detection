@@ -24,11 +24,14 @@
 - 2 部署
     - 运行 `run_service.sh`
     - 测试API `test_api.py`
-    
+- 3 在线API服务
+    - 可以 通过API 直接访问： http://119.29.81.170:10545/id_detection/regex/rawInput=品牌
+
 ### Important Date
 - version 1.1:
     - 2017-01-15
     - 修正部分bug，比如 人气 等
+    - [网络制式]正则里 添加 `4G`的匹配，支持 `4G网络` 等的匹配
     - 修正部分todo
 
 - version 1.0:
