@@ -7,7 +7,7 @@
 """
 from __future__ import print_function
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 
 class InfoMetadata(object):
@@ -27,9 +27,9 @@ class InfoMetadata(object):
     regex_value = ''
 
     # 匹配到的字符串起点
-    leftIndex = 0
+    left_index = 0
     # 匹配到的字符串终点
-    rightIndex = 0
+    right_index = 0
 
     def __init__(self):
         pass
@@ -45,7 +45,7 @@ class InfoMetadata(object):
             'regex_name': self.regex_name,
             'regex_value': self.regex_value,
             'is_statement': self.is_statement,
-            'leftIndex': self.leftIndex,
-            'rightIndex': self.rightIndex,
+            'left_index': self.left_index,
+            'right_index': self.right_index,
         }
         return dd

@@ -1,6 +1,6 @@
 ## ch2r_ID_detection
 ### Describe
-- 当前版本version1.1
+- 当前版本version1.2
 - Ch2R ID detection
 - C h 2 R In-Domain's detection (有效语义检测)
 
@@ -28,11 +28,18 @@
     - 可以 通过API 直接访问： http://119.29.81.170:10545/id_detection/regex/rawInput=品牌
 
 ### Important Date
+- version 1.2:
+    - 2017-01-27
+    - 修正`regex_extracting`部分bug，比如 
+        - 1）“小米3”  ---> 主屏尺寸: 【小】【3.8,4.2】   ---->  修正长串匹配，这里的 “小米”作为一个整体，
+            - 修改后识别结果为 不会将这里的“小”作为一个有效语义。
+    - 增加冲突处理
+    
 - version 1.1:
     - 2017-01-15
-    - 修正部分bug，比如 人气 等
-    - [网络制式]正则里 添加 `4G`的匹配，支持 `4G网络` 等的匹配
-    - 修正部分todo
+    - 修正`regex_extracting`部分bug，比如 人气 等
+        - [网络制式]正则里 添加 `4G`的匹配，支持 `4G网络` 等的匹配
+        - 修正部分todo
 
 - version 1.0:
     - 2017-01-13

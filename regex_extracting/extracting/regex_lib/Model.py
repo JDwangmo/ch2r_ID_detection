@@ -8,14 +8,13 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 
 class Model(RegexBase):
     name = '型号'
 
-    def __init__(self,sentence):
-
+    def __init__(self, sentence):
         # 要处理的输入句子
 
         self.sentence = sentence
@@ -27,8 +26,11 @@ class Model(RegexBase):
         ]
         # 值正则表达式
         self.value_regexs = [
-            '(?<![0-9a-zA-Z_-])[0-9a-zA-Z_-]{1,20}(?![0-9a-zA-Z_-])(?!.*元|块)',
-                # '随意|随便|都可以|其他|别的'# 还未改
+            # ##### 规则 - 1 #####
+            # by WJD
+            '[0-9a-zA-Z_\-\.]{1,20}(?!.*元|块)',
+            # ###################
+            # '随意|随便|都可以|其他|别的'# 还未改
         ]
         # endregion
         super(Model, self).__int__()
@@ -36,7 +38,7 @@ class Model(RegexBase):
 
 
 if __name__ == '__main__':
-    price = Model('价不高')
+    price = Model(u'价格.4.7.')
     for info_meta_data in price.info_meta_data_list:
-        print('-'*80)
-        print(str(info_meta_data))
+        print('-' * 80)
+        print(unicode(info_meta_data))

@@ -7,4 +7,4 @@
 """
 from __future__ import print_function
 
-__version__ = ''
+__version__ = '1.2'

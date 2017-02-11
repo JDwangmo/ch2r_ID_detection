@@ -90,7 +90,7 @@ from regex_lib.ScorePerformance import *
 from regex_lib.ScoreShape import *
 from regex_lib.peripherals import *
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 
 class RegexExtracting(object):
@@ -108,13 +108,14 @@ class RegexExtracting(object):
         提取有效语义
 
         :param sentence: 待提取的句子
-        :return: (is_id, info_blocks) =  (是否有语义， 提取的语义块)
+        :return: (is_id, original_info_blocks, info_blocks) =  (是否有语义，原始提取的语义块 , 最终提取的语义块)
         """
 
         # 提取到的有效语义 列表
         # 每个元素是 RegexBase 对象
         extracting_regexs = []
-        # region 逐个参数进行处理
+
+        # region 1 逐个参数进行处理
 
         extracting_regexs.append(Price(sentence))
 
@@ -238,18 +239,96 @@ class RegexExtracting(object):
         # extracting_regexs.append(Advantage(sentence))
         # extracting_regexs.append(Disadvantage
         # endregion
-
+        # region 2 去除为空的属性
         extracting_regexs = [regex for regex in extracting_regexs if len(regex.info_meta_data_list) > 0]
+        # 保存原始提取结果，logging用
+        original_extracting_result = RegexExtracting.to_dict(extracting_regexs)
+        # endregion
+        # region 3 冲突处理
+        RegexExtracting.conflict_process(extracting_regexs)
+        # 再去除一次去除为空的属性
+        extracting_regexs = [regex for regex in extracting_regexs if len(regex.info_meta_data_list) > 0]
+        # endregion
 
         if len(extracting_regexs) > 0:
             # print('有语义')
             # for regex in extracting_regexs:
             #     print('-' * 50)
             #     print(unicode(regex))
-            return True, RegexExtracting.to_dict(extracting_regexs)
+            return True, original_extracting_result, RegexExtracting.to_dict(extracting_regexs)
         else:
             # print('无语义')
-            return False, RegexExtracting.to_dict(extracting_regexs)
+            return False, original_extracting_result, RegexExtracting.to_dict(extracting_regexs)
+
+    @staticmethod
+    def is_overlay(item_i, item_j):
+        """
+        判断两个语义块是否相交
+
+        :param item_i:
+        :param item_j:
+        :return:
+        """
+        if item_j.right_index <= item_i.left_index:
+            # item_i 在右边，item_j 在左边，比如  item_i 区间是[2,4] ,item_j 区间是[6,9]
+            return False
+
+        if item_i.right_index <= item_j.left_index:
+            # item_i 在左边，item_j 在右边，比如  item_i 区间是[6,9] ,item_j 区间是[2,4]
+            return False
+        # 其他情况都相交
+        return True
+
+    @staticmethod
+    def get_score(item_J, item_j):
+        """
+        计算语义块的分数，用于冲突处理
+
+        :param item_J: 待计算分数的语义块 的所属 属性下 的所有语义块集合
+        :param item_j: 待计算分数的语义块
+        :return:
+        """
+        score = 0
+        # 该语义块的所属属性下的 语义块个数越多，分数越大
+        score += len(item_J.info_meta_data_list) * 1000
+        # 匹配到的语义块的内容长度，比如  “红米”的分数要比“红”高
+        score += len(item_j.regex_value) * 200
+        # 假如是 描述型的语义块（属性名），分数更高
+        score += 300 if item_j.is_statement else 0
+        return score
+
+    @staticmethod
+    def conflict_process(extracting_regexs):
+        """
+        冲突处理 --- 判断是否有语义块相交
+
+        :param extracting_regexs: 待进一步处理的语义块集合
+        :return:
+        """
+        for a in range(len(extracting_regexs)):
+            items_a = extracting_regexs[a]
+            for items_b in extracting_regexs[a + 1:]:
+
+                for item_i in items_a.info_meta_data_list:
+                    for item_j in items_b.info_meta_data_list:
+
+                        if RegexExtracting.is_overlay(item_i, item_j):
+                            # 假如两个语义块相交，怎进行冲突处理，去除掉一个
+                            # print(unicode(item_i))
+                            # print('-----------')
+                            # print(unicode(item_j))
+                            # print('------------------')
+                            score_a = RegexExtracting.get_score(items_a, item_i)
+                            score_b = RegexExtracting.get_score(items_b, item_j)
+                            # print(score_a, score_b)
+                            # 去除掉分数低的语义块
+                            if score_a > score_b:
+                                items_b.info_meta_data_list.remove(item_j)
+                            elif score_a < score_b:
+                                items_a.info_meta_data_list.remove(item_i)
+                            else:
+                                # 分数相同暂不处理
+                                pass
 
     @staticmethod
     def to_dict(extracting_regexs):
@@ -260,6 +339,10 @@ class RegexExtracting(object):
 if __name__ == '__main__':
     # print(RegexExtracting.extracting(u'价格'))
     # print(RegexExtracting.extracting(u'随便'))
-    print(RegexExtracting.extracting(u'移动4G'))
+    # print(RegexExtracting.extracting(u'移动4G'))
+    # print(RegexExtracting.extracting(u'小米3'))
+    # print(RegexExtracting.extracting(u'4.7'))
+    # print(RegexExtracting.extracting(u'红米 、 诺基亚'))
+    print(RegexExtracting.extracting(u'那就小米红米Note把'))
     # print(RegexExtracting.extracting(u'普通'))
-    # RegexExtracting.extracting(u'4000元')
+    # print(RegexExtracting.extracting(u'你'))

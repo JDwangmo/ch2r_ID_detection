@@ -8,7 +8,7 @@
 from __future__ import print_function
 import requests
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 TAG_URL = 'http://119.29.81.170:10545/id_detection/regex/rawInput=%s'
 # 输入要测试的句子

@@ -7,7 +7,7 @@
 """
 from __future__ import print_function
 
-__version__ = '1.1'
+__version__ = '1.2'
 import re
 from info_meta_data import InfoMetadata
 
@@ -61,8 +61,8 @@ class RegexBase(object):
 
             info_meta_data.is_statement = True
 
-            info_meta_data.leftIndex = match_result.start(0)
-            info_meta_data.rightIndex = match_result.end(0)
+            info_meta_data.left_index = match_result.start(0)
+            info_meta_data.right_index = match_result.end(0)
             # 添加
             self.info_meta_data_list.append(info_meta_data)
             present_regex_values.add(info_meta_data.regex_value)
@@ -72,19 +72,20 @@ class RegexBase(object):
         pattern = '|'.join(['(%s)' % regex for regex in self.value_regexs])
         pattern = pattern.decode('utf8')
         # print(pattern)
-        match_result = re.search(pattern, self.sentence)
-        if match_result:
-            if not match_result.group(0) in present_regex_values:
+        # match_result = re.findall(pattern, self.sentence)
+        for item in re.finditer(pattern, self.sentence):
+            # 遍历所有出现的语义块
+            if not item.group(0) in present_regex_values:
                 # 没出现过，才添加
                 info_meta_data = InfoMetadata()
                 info_meta_data.raw_data = self.sentence
                 info_meta_data.regex_name = self.name
-                info_meta_data.regex_value = match_result.group(0)
+                info_meta_data.regex_value = item.group(0)
 
                 info_meta_data.is_statement = False
 
-                info_meta_data.leftIndex = match_result.start(0)
-                info_meta_data.rightIndex = match_result.end(0)
+                info_meta_data.left_index = item.start(0)
+                info_meta_data.right_index = item.end(0)
                 # 添加
                 self.info_meta_data_list.append(info_meta_data)
 

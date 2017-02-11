@@ -1,16 +1,16 @@
 # encoding=utf8
 """
     Author:  'jdwang'
-    Date:    'create date: 2017-01-13'; 'last updated date: 2017-01-13'
+    Date:    'create date: 2017-01-13'; 'last updated date: 2017-01-30'
     Email:   '383287471@qq.com'
-    Describe:
+    Describe: ID Detection 服务器运行程序
 """
 
 import web
 import json
 import sys
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 sys.path.append('.')
 sys.path.append('..')
@@ -36,10 +36,11 @@ class IDDetectionMain:
         else:
             status = 'True|regex detection'
 
-        is_id, info_blocks = RegexExtracting.extracting(rawInput)
+        is_id, original_info_blocks, info_blocks = RegexExtracting.extracting(rawInput)
         result = {'rawInput': rawInput,
                   'status': status,
                   'is_id': is_id,
+                  'original_info_blocks': original_info_blocks,
                   'info_blocks': info_blocks
                   }
         web.header('Content-Type', 'application/json')
