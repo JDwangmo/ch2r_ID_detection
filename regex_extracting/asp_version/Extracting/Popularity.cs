@@ -21,11 +21,12 @@ namespace Ch2R.Code.Extracting
             #region 初始化正则表达式
             // 描述正则表达式
             StatementRegexs = new string[] {
-                @"  "
+                @"  ",
+                @"人气"
             };
             // 值正则表达式
             ValueRegexs = new string[] {
-                @"(?<!多)高|低|一般|普通",
+                @"(?<!多)高|低|一般|普通|主流",
                 @"随意|随便|都可以|其他|别的"
             };
             #endregion
@@ -57,7 +58,7 @@ namespace Ch2R.Code.Extracting
                     {
                         list[i].normalData = string.Format("{0},{1}", 0, 70);
                     }
-                    else if (Regex.IsMatch(str, @"(?<!多)高"))
+                    else if (Regex.IsMatch(str, @"(?<!多)高") || Regex.IsMatch(str, @"主流"))
                     {
                         list[i].normalData = string.Format("{0},{1}", 70, 90);
                     }

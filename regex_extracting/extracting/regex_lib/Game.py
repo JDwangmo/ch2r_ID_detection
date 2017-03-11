@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class Game(RegexBase):

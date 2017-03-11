@@ -123,7 +123,7 @@ namespace Ch2R.Code.Extracting
             }
             else if (matches.Count == 0)
             {
-                if (Regex.IsMatch(str, "长|久"))
+                if (Regex.IsMatch(str, "长|久") && Regex.IsMatch(str, "待机时间"))
                 {
                     Formated = string.Format("{0},{1}", "401", int.MaxValue.ToString());
                 }
@@ -131,7 +131,7 @@ namespace Ch2R.Code.Extracting
                 {
                     Formated = string.Format("{0},{1}", "200", "400");
                 }
-                else if (Regex.IsMatch(str, "短"))
+                else if (Regex.IsMatch(str, "短") && Regex.IsMatch(str, "待机时间"))
                 {
                     Formated = string.Format("{0},{1}", "0", "199");
                 }

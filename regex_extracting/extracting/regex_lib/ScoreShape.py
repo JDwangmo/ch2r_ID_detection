@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class ScoreShape(RegexBase):
@@ -32,6 +32,7 @@ class ScoreShape(RegexBase):
             '(?<=样子)如何|(?<=样子)怎么样|(?<=样子)怎样|(?<=样子)好不|(?<=样子)行不',
             '(?<=外形)如何|(?<=外形)怎么样|(?<=外形)怎样|(?<=外形)好不|(?<=外形)行不',
             '好看吗|好不好看',
+            '美观|可爱',
             '随意|随便|都可以|其他|别的'
         ]
         # endregion

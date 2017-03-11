@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class RamCapacity(RegexBase):
@@ -32,7 +32,7 @@ class RamCapacity(RegexBase):
             # 大 / 小
             # by WJD
             # 如果 小米 则“小”不是有效的语义，不会识别出来
-            '(?<!多)(大)(?!小)|(?<!大|多)(小)(?!米)',
+            '(?<!多)(大)(?!小)|(?<!大|多)(小)',
             # ###################
             '随意|随便|都可以'
         ]

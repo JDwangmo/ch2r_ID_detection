@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class ScreenSize(RegexBase):
@@ -39,7 +39,7 @@ class ScreenSize(RegexBase):
             # 宽 / 大 / 小
             # by WJD
             # 如果 小米 则“小”不是有效的语义，不会识别出来
-            '(?<!多)(宽)|(?<!多)(大)(?!小)|(?<!大|多)(小)(?!米)',
+            '(?<!多)(宽)|(?<!多)(大)(?!小)|(?<!大|多)(小)',
             # ###################
             '差不多|适中|一般',
             '最大|最小|最多|最少|最高|最低|多一点|高一点|低一点|少一点|再少|再低|再高|再大|再小|更大|更小|好一点',

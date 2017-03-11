@@ -8,14 +8,13 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class KeyboardType(RegexBase):
     name = '键盘类型'
 
-    def __init__(self,sentence):
-
+    def __init__(self, sentence):
         # 要处理的输入句子
 
         self.sentence = sentence
@@ -27,8 +26,8 @@ class KeyboardType(RegexBase):
         ]
         # 值正则表达式
         self.value_regexs = [
-            'SureType(键盘)?|虚拟(QWERTY)?(键盘)?|T9(传统键盘)?|(QWERTY)?全键盘',
-                '随意|随便|都可以|其他|别的'
+            'SureType(键盘)?|虚拟(QWERTY)?(键盘)?|T9(传统键盘)?|(QWERTY)?全键盘|无按键',
+            '随意|随便|都可以|其他|别的'
         ]
         # endregion
         super(KeyboardType, self).__int__()
@@ -38,5 +37,5 @@ class KeyboardType(RegexBase):
 if __name__ == '__main__':
     price = KeyboardType('价不高')
     for info_meta_data in price.info_meta_data_list:
-        print('-'*80)
+        print('-' * 80)
         print(str(info_meta_data))

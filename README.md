@@ -1,6 +1,6 @@
 ## ch2r_ID_detection
 ### Describe
-- 当前版本version1.2
+- 当前版本version1.3
 - Ch2R ID detection
 - C h 2 R In-Domain's detection (有效语义检测)
 
@@ -28,6 +28,12 @@
     - 可以 通过API 直接访问： http://119.29.81.170:10545/id_detection/regex/rawInput=品牌
 
 ### Important Date
+- version 1.3:
+    - 2017-03-11
+    - 修正部分bug，比如 
+        - 1) 增加部分语义规则, 比如: 键盘类型 - 无按键 等
+        - 2) 修改冲突处理, 使得长串匹配更加通用,比如 "小米" 和 "小",则去除掉 "小"
+        
 - version 1.2:
     - 2017-01-27
     - 修正`regex_extracting`部分bug，比如 

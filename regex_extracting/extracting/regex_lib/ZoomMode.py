@@ -8,14 +8,13 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class ZoomMode(RegexBase):
     name = '变焦模式'
 
-    def __init__(self,sentence):
-
+    def __init__(self, sentence):
         # 要处理的输入句子
 
         self.sentence = sentence
@@ -28,7 +27,7 @@ class ZoomMode(RegexBase):
         # 值正则表达式
         self.value_regexs = [
             '数码变焦|光学变焦',
-                '随意|随便|都可以|其他|别的'
+            '随意|随便|都可以|其他|别的'
         ]
         # endregion
         super(ZoomMode, self).__int__()
@@ -38,5 +37,5 @@ class ZoomMode(RegexBase):
 if __name__ == '__main__':
     price = ZoomMode('价不高')
     for info_meta_data in price.info_meta_data_list:
-        print('-'*80)
+        print('-' * 80)
         print(str(info_meta_data))

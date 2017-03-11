@@ -27,7 +27,7 @@ namespace Ch2R.Code.Extracting
 
             //值正则表达式
             ValueRegexs = new string[] {
-                @"SureType(键盘)?|虚拟(QWERTY)?(键盘)?|T9(传统键盘)?|(QWERTY)?全键盘",
+                @"SureType(键盘)?|虚拟(QWERTY)?(键盘)?|T9(传统键盘)?|(QWERTY)?全键盘|无按键",
                 @"随意|随便|都可以|其他|别的"
             };
             #endregion
@@ -68,7 +68,7 @@ namespace Ch2R.Code.Extracting
                  * 那么匹配上：不要
                  * 在“XX键盘”前出现“不”这个否定词，因此认为是否定形式
                  * */
-                if (Regex.IsMatch(sentence.Substring(0, list[i].leftIndex), @"(不)|(非(?!常))"))
+                if (Regex.IsMatch(sentence.Substring(0, list[i].leftIndex), @"(不)|(非(?!常))") || Regex.IsMatch(sentence.Substring(0, list[i].leftIndex), @"无"))
                 {
                     list[i].isNegative = true;
                 }

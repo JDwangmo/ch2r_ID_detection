@@ -90,7 +90,7 @@ from regex_lib.ScorePerformance import *
 from regex_lib.ScoreShape import *
 from regex_lib.peripherals import *
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class RegexExtracting(object):
@@ -318,13 +318,28 @@ class RegexExtracting(object):
                             # print('-----------')
                             # print(unicode(item_j))
                             # print('------------------')
-                            score_a = RegexExtracting.get_score(items_a, item_i)
-                            score_b = RegexExtracting.get_score(items_b, item_j)
-                            # print(score_a, score_b)
+                            score_i = RegexExtracting.get_score(items_a, item_i)
+                            score_j = RegexExtracting.get_score(items_b, item_j)
+                            # region 修正分数 --- 长串匹配,比如 "小米"  和 "小" ,则去掉 "小"
+                            if item_i.left_index <= item_j.left_index and item_j.right_index <= item_i.right_index:
+                                # 即 item_i 包含 item_j, 直接长串匹配,把 短的 item_j去掉
+                                # 比如 "小米"  和 "小" ,则去掉 "小"
+                                if item_i.regex_value != item_j.regex_value:
+                                    # 避免是 两个一样的,比如 "小" 和 "小",这种情况是不知道去掉哪个的
+                                    score_i = 1
+                                    score_j = 0
+                            elif item_j.left_index <= item_i.left_index and item_i.right_index <= item_j.right_index:
+                                # 即 item_j 包含 item_i, 直接长串匹配,把 短的 item_i 去掉
+                                if item_i.regex_value != item_j.regex_value:
+                                    # 避免是 两个一样的,比如 "小" 和 "小",这种情况是不知道去掉哪个的
+                                    score_i = 0
+                                    score_j = 1
+                                    # endregion
+                            # print(score_i, score_j)
                             # 去除掉分数低的语义块
-                            if score_a > score_b:
+                            if score_i > score_j:
                                 items_b.info_meta_data_list.remove(item_j)
-                            elif score_a < score_b:
+                            elif score_i < score_j:
                                 items_a.info_meta_data_list.remove(item_i)
                             else:
                                 # 分数相同暂不处理

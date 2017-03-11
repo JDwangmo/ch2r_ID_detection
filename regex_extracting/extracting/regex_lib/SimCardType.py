@@ -8,7 +8,7 @@
 from __future__ import print_function
 from regex_extracting.extracting.common.regex_base import RegexBase
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 
 class SimCardType(RegexBase):
@@ -23,7 +23,7 @@ class SimCardType(RegexBase):
         # region 1 初始化正则表达式
         # 描述正则表达式
         self.statement_regexs = [
-            '手机卡|SIM卡类型卡|卡'
+            '手机卡|SIM卡类型卡|SIM卡'
         ]
         # 值正则表达式
         self.value_regexs = [

@@ -28,6 +28,7 @@ namespace Ch2R.Code.Extracting
             // 值正则表达式
             ValueRegexs = new string[] {
                 @"cpu|前置摄像头|后置摄像头|电池|操作系统|WIFI|蓝牙",
+                @"高",
                 @"随意|随便|都可以|其他|别的"
             };
             #endregion

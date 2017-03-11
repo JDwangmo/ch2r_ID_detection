@@ -27,6 +27,8 @@ namespace Ch2R.Code.Extracting
             ValueRegexs = new string[] {
                 @"(大于|小于|等于|超过|不低于)*\d{1,6}(MB|GB|G|M|m|g|gb|mb)",
                 @"\d{1,6}(MB|GB|G|M|m|g|gb|mb)(以下|以上)",
+                // by WJD
+                // 如果出现“小米”，则这里的“小”不算容量
                 @"(?<!多)(大)(?!小)|(?<!大|多)(小)",
                 @"随意|随便|都可以"
             };

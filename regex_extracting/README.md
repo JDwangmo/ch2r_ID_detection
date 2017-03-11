@@ -1,6 +1,6 @@
 ## ch2r_ID_detection  ---- regex_extracting
 ### Describe
-- 当前版本 1.2
+- 当前版本 1.3
 - C h 2 R In-Domain's detection 
 - 通过正则提取 有效语义
 - 主要是将原有的在 Asp.Net 版本 转换 成Python版本
@@ -25,6 +25,13 @@
 
 
 ### Change Log
+
+- version 1.3:
+    - 2017-03-11
+    - 修正部分bug，比如 
+        - 1) 增加部分语义规则, 比如: 键盘类型 - 无按键 等
+        - 2) 修改冲突处理, 使得长串匹配更加通用,比如 "小米" 和 "小",则去除掉 "小"
+         
 - version 1.2:
     - 2017-01-27
     - 修正部分bug，比如 

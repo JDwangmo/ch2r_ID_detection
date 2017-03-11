@@ -22,7 +22,7 @@ namespace Ch2R.Code.Extracting
             #region 初始化正则表达式
             // 描述正则表达式
             StatementRegexs = new string[] {
-                @"外观|外形|样子|外貌"
+                @"外观|外形|外貌"
             };
             // 值正则表达式
             ValueRegexs = new string[] {
@@ -31,6 +31,8 @@ namespace Ch2R.Code.Extracting
                 @"(?<=样子)如何|(?<=样子)怎么样|(?<=样子)怎样|(?<=样子)好不|(?<=样子)行不",
                 @"(?<=外形)如何|(?<=外形)怎么样|(?<=外形)怎样|(?<=外形)好不|(?<=外形)行不",
                 @"好看吗|好不好看",
+                @"美观",
+                @"可爱",
                 @"随意|随便|都可以|其他|别的"
             };
             #endregion

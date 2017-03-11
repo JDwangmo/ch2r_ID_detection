@@ -23,7 +23,7 @@ namespace Ch2R.Code.Extracting
             //描述正则表达式
 
             StatementRegexs = new string[]{
-                @"手机卡|SIM卡类型卡|卡"
+                @"手机卡|SIM卡类型卡|SIM卡"
             };
 
             //值正则表达式
