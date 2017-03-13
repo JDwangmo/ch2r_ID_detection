@@ -26,7 +26,7 @@ class Brand(RegexBase):
         ]
         # 值正则表达式
         self.value_regexs = [
-            '红米|诺基亚|nokia|Nokia|NOKIA|三星|SAMSUNG|samsung|Samsung|苹果|HTC|htc|华为|联想|lenovo|Lenovo|LENOVO|\
+            '诺基亚|nokia|Nokia|NOKIA|三星|SAMSUNG|samsung|Samsung|苹果|HTC|htc|华为|联想|lenovo|Lenovo|LENOVO|\
                   步步高|酷派|金立|魅族|黑莓|天语|摩托罗拉|OPPO|oppo|经纬|飞利浦|小米|中兴|云台|LG|lg|TCL|tcl|华硕|海信|\
                   长虹|海尔|康佳|夏新|纽曼|亿通|乐派|七喜|阿尔法|富士通|Yahoo|谷歌|卡西欧|优派|技嘉|惠普|多普达|东芝|爱国者|\
                   明基|万利达|戴尔|中天|夏普|索尼|努比亚|锤子|LG|lg|小辣椒',

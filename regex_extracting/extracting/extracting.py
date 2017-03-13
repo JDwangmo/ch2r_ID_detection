@@ -6,6 +6,7 @@
     Describe:  正则规则 判定的 有效语义检测方法
 """
 from __future__ import print_function
+import copy
 from regex_lib.Price import *
 from regex_lib.Brand import *
 from regex_lib.Model import *
@@ -101,6 +102,22 @@ class RegexExtracting(object):
 
     def __int__(self):
         pass
+
+    @staticmethod
+    def filter_evaluative_semantic_info(extracting_regexs):
+        """
+            过滤 评价性 语义
+                过滤操作: 将只有 "好" 的语义信息块,去掉
+
+        :param extracting_regexs:
+        :return:
+        """
+        for regex in extracting_regexs:
+            if sum([info_meta_data.regex_value not in [u'好'] for info_meta_data in regex.info_meta_data_list]) == 0:
+                # 如果没出现 除了 "好"等之外的 的其他语义值出现, 则将所有语义信息都抹掉
+                # 比如: "LA3的好还是LA6的好":
+                #        ---->  "后置摄像头像素": { "regex_value": "好",}{"regex_value": "好",} 这里的好没有什么意思, 直接抹掉
+                regex.info_meta_data_list = []
 
     @staticmethod
     def extracting(sentence):
@@ -246,6 +263,9 @@ class RegexExtracting(object):
         # endregion
         # region 3 冲突处理
         RegexExtracting.conflict_process(extracting_regexs)
+        # endregion
+        # region 4
+        RegexExtracting.filter_evaluative_semantic_info(extracting_regexs)
         # 再去除一次去除为空的属性
         extracting_regexs = [regex for regex in extracting_regexs if len(regex.info_meta_data_list) > 0]
         # endregion
@@ -307,10 +327,10 @@ class RegexExtracting(object):
         """
         for a in range(len(extracting_regexs)):
             items_a = extracting_regexs[a]
-            for items_b in extracting_regexs[a + 1:]:
+            for items_b in extracting_regexs[a:]:
 
-                for item_i in items_a.info_meta_data_list:
-                    for item_j in items_b.info_meta_data_list:
+                for item_i in copy.copy(items_a.info_meta_data_list):
+                    for item_j in copy.copy(items_b.info_meta_data_list):
 
                         if RegexExtracting.is_overlay(item_i, item_j):
                             # 假如两个语义块相交，怎进行冲突处理，去除掉一个

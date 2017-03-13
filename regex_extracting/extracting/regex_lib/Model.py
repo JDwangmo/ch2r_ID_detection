@@ -28,7 +28,9 @@ class Model(RegexBase):
         self.value_regexs = [
             # ##### 规则 - 1 #####
             # by WJD
+            '红米',
             '[0-9a-zA-Z_\-\.]{1,20}(?!.*元|块)',
+            '好',
             # ###################
             # '随意|随便|都可以|其他|别的'# 还未改
         ]
@@ -38,7 +40,7 @@ class Model(RegexBase):
 
 
 if __name__ == '__main__':
-    price = Model(u'价格.4.7.')
+    price = Model(u'LA3')
     for info_meta_data in price.info_meta_data_list:
         print('-' * 80)
         print(unicode(info_meta_data))

@@ -26,7 +26,8 @@ class Peripherals(RegexBase):
         ]
         # 值正则表达式
         self.value_regexs = [
-            'cpu|前置摄像头|后置摄像头|电池|操作系统|WIFI|蓝牙',
+            'cpu|电池|操作系统|WIFI|蓝牙',
+            '前置(摄像头)*|后置(摄像头)*',
             '高',
             '随意|随便|都可以|其他|别的'
         ]

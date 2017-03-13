@@ -27,7 +27,8 @@ namespace Ch2R.Code.Extracting
             // 值正则表达式
             ValueRegexs = new string[] {
                 @"(?<![0-9a-zA-Z_-])[\.0-9a-zA-Z_-]{1,20}(?![0-9a-zA-Z_-])(?!.*元|块)",
-                //@"红米",
+                @"红米",
+                @"好",
                 //@"随意|随便|都可以|其他|别的"//还未改
             };
             #endregion

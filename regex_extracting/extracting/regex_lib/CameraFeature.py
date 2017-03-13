@@ -14,8 +14,7 @@ __version__ = '1.3'
 class CameraFeature(RegexBase):
     name = '拍照功能'
 
-    def __init__(self,sentence):
-
+    def __init__(self, sentence):
         # 要处理的输入句子
 
         self.sentence = sentence
@@ -28,7 +27,7 @@ class CameraFeature(RegexBase):
         # 值正则表达式
         self.value_regexs = [
             '好友照片分享|脸部识别功能|人脸幻灯片|人脸识别',
-                '随意|随便|都可以|其他|别的'
+            '随意|随便|都可以|其他|别的',
         ]
         # endregion
         super(CameraFeature, self).__int__()
@@ -38,5 +37,5 @@ class CameraFeature(RegexBase):
 if __name__ == '__main__':
     price = CameraFeature('价不高')
     for info_meta_data in price.info_meta_data_list:
-        print('-'*80)
+        print('-' * 80)
         print(str(info_meta_data))

@@ -43,7 +43,7 @@ class RegexBase(object):
 
         :return:
         """
-        return {idx:item.to_dict() for idx,item in enumerate(self.info_meta_data_list)}
+        return {idx: item.to_dict() for idx, item in enumerate(self.info_meta_data_list)}
 
     def regex_process(self):
         # 出现过的匹配值
@@ -90,3 +90,4 @@ class RegexBase(object):
                 self.info_meta_data_list.append(info_meta_data)
 
                 # endregion
+
